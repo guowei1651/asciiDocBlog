@@ -12,7 +12,7 @@ weight: 4000
 toc: true
 ---
 
-# 背景
+## 背景
 使用的Logstash版本是7.4.2，使用的logstash-output-mongodb版本是3.1.6。基本配置如下：
 ```
 input {
@@ -59,7 +59,7 @@ output {
 }
 ```
 
-# 问题
+## 问题
 - ## logstash的问题
 1. 时间戳logstash自动改，而且还不带时区。
 最主要的问题是大家的处理方法都是给时间加上8个小时来处理时间。查找Logstash的时区设置很难找到相关资料，并且所有的参数设置后都无法生效。
@@ -184,5 +184,5 @@ output {
 "/usr/share/logstash/logstash-core/lib/logstash/java_pipeline.rb:243:in `block in start_workers'"
 ```
 
-# 总结
+## 总结
 不知道logstash-output-mongodb是不是还在实验阶段，没有正式发布。

@@ -7,11 +7,11 @@ draft: false
 images: []
 ---
 
-# 背景
+## 背景
 
 公司有一批15年左右实现的中台服务，当时使用的是JDK1.7+Gradle3.7实现的。这套微服务现在还是公司的业务主力，经过5年做左右的积累这些服务已经复杂的不可修改了。基于此公司准备对这批服务进行重构。重构的第一步肯定是进行技术升级。
 
-# 过程
+## 过程
 
 在进行技术升级的时候，公司对微服务进行技术升级的时候规划了几个步骤：
 1. 升级JDK。将JDK从1.7升级到1.8。
@@ -115,7 +115,7 @@ org.apache.dubbo.rpc.RpcException: No provider available from registry 127.0.0.1
 ```
 为啥这个异常捕获没有捕获到。调查发现：RpcException的import是com.alibaba.dubbo.rpc.RpcException。但现在使用的是org.apache的dubbo。所以获取到，导致异常从这段代码的方法中抛出到外部。修改catch中的捕获变为Throwable就解决了问题。
 
-# 总结
+## 总结
 Dubbo对于底层运行环境的依赖过于的强，导致升级jdk的时候必须升级Dubbo版本。如果不同的Dubbo版本之前序列化和反序列化出现问题，那就可以不用玩了。如果利用一些Dubbo的特性在过程中传输一些上下文信息，那也不要玩了。
 
 升级一个jdk牵扯出来这么多dubbo的事情为啥感觉这么不能接受呢。因为同样的环境下我们还用了spring 4.1.0，然后升级完jdk之后spring没有任何反应者多爽呢。

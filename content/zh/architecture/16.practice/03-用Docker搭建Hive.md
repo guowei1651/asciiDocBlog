@@ -8,32 +8,32 @@ images: []
 ---
 
 
-# 背景
+## 背景
 因为现在很多云都使用PAAS的方式提供大数据存储与计算的功能。作者就在思考他们是怎样实现的，并且提供出动态部署能力的大数据存储与计算过程的。所以，使用Docker进行Hadoop环境的搭建。并且为之后的K8s环境搭建提供一种思路。
 
 在环境构建与使用的过程可以分为几个阶段：准备过程，搭建过程，配置过程，启动过程、测试过程。
 
-# 准备过程
+## 准备过程
 主要是准备软件包，并为Docker镜像与配置项分离做准备。
-- **准备软件包**
+### **准备软件包**
 > 下载以下软件包：
 >  - [hadoop-2.7.7](https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-2.7.7/hadoop-2.7.7.tar.gz)
 >  - [hive-2.3.6](https://mirrors.tuna.tsinghua.edu.cn/apache/hive/hive-2.3.6/apache-hive-2.3.6-bin.tar.gz)
 >  - [mysql-connector-java-5.1.48](https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.48.tar.gz)
 >  - [jdk-8u231-linux-x64.rpm](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
-- **创建目录**
+### **创建目录**
 ```bash
 mkdir -p /home/docker/{centos_ssh,hadoop,hive,mysql}
 ```
-- **上传文件**
+### **上传文件**
 ```bash
 cd /home/docker/hadoop
 rz 【hadoop-2.7.7.tar.gz，jdk-8u231-linux-x64.rpm】
 cd /home/docker/hive
 rz 【apache-hive-2.3.6-bin.tar.gz，jdk-8u231-linux-x64.rpm，mysql-connector-java-5.1.48.tar.gz】
 ```
-- **解压并Copy配置**
+### **解压并Copy配置**
 ```bash
 cd /home/docker/hadoop
 tar -xzvf hadoop-2.7.7.tar.gz
@@ -43,7 +43,7 @@ tar -xzvf apache-hive-2.3.6-bin.tar.gz
 tar -xzvf mysql-connector-java-5.1.48.tar.gz
 cp -rf apache-hive-2.3.6-bin/conf/ ./conf
 ```
-- **创建my.cnf**
+### **创建my.cnf**
 为Mysql配置my.cfg配置。这个配置是从CDH6.3的配置中拉过来的。
 ```
 [mysqld]
@@ -103,10 +103,10 @@ sql_mode=STRICT_ALL_TABLES
 chmod 644 my.cnf
 ```
 
-# 搭建过程
+## 搭建过程
 在这个过程中将上面准备好的包，构建为Docker镜像。
 
-- **搭建Docker+CentOS+SSH环境**
+### **搭建Docker+CentOS+SSH环境**
 
 ```
 FROM centos:7.2.1511
@@ -135,7 +135,7 @@ CMD ["/usr/sbin/sshd", "-D"]
 ```
 docker build -t centos-ssh .
 ```
-- **搭建Hadoop环境**
+### **搭建Hadoop环境**
 ```
 FROM centos-ssh
 MAINTAINER wales.kuo
@@ -152,13 +152,12 @@ ENV PATH $HADOOP_HOME/bin:$PATH
 ```
 docker build -t hadoop:2.7.7 -t centos-hadoop .
 ```
-- **搭建MetaData的Mysql**
+### **搭建MetaData的Mysql**
 ```
 docker pull mysql:5.7.27
 ```
 
-
-- **搭建Hive环境**
+### **搭建Hive环境**
 ```
 FROM centos-hadoop
 MAINTAINER wales.kuo
@@ -174,10 +173,10 @@ ENV PATH $HIVE_HOME/bin:$PATH
 docker build -t hive:2.3.6 -t centos-hive .
 ```
 
-# 配置过程
+## 配置过程
 修改Hadoop，Hive的默认参数，准备启动使用。并且因为Hadoop需要免密登录的配置，所以需要先将容器启动，然后再进入容器中免密登录部分。
 
-#### 修改Hadoop参数
+### 修改Hadoop参数
 hadoop配置修改/home/docker/hadoop/conf/下的配置文件core-site.xml、hdfs-site.xml、yarn-site.xml、mapred-site.xml、slaves。
 
 (1)hadoop-env.sh
@@ -249,7 +248,7 @@ vi mapred-site.xml
 hadoop1
 hadoop2
 ```
-#### 修改Hive参数
+### 修改Hive参数
 使用hive的默认配置，创建配置文件。并修改配置。
 (1)Copy创建配置文件
 ```
@@ -303,7 +302,7 @@ export HIVE_CONF_DIR=/usr/local/hive/conf    ##Hive配置文件路径
   </property>
 ```
 
-#### 启动容器
+### 启动容器
 ```
 version: '3.1'
 
@@ -321,8 +320,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: dls123456
 
-
-
 docker network create --subnet=172.19.0.0/16 hadoop_default
 docker run --name hadoop0 --hostname hadoop0 --net hadoop_default --ip 172.19.0.2 -v /home/docker/hadoop/conf:/usr/local/hadoop-2.7.7/etc/hadoop/ -v /home/docker/hadoop/hadoop0:/usr/local/hadoop/tmp -v /home/docker/hadoop/hadoop0/logs:/usr/local/hadoop-2.7.7/logs/ -d -P -p 50070:50070 -p 8088:8088  centos-hadoop
 docker run --name hadoop1 --hostname hadoop1 --net hadoop_default --ip 172.19.0.3 -v /home/docker/hadoop/conf:/usr/local/hadoop-2.7.7/etc/hadoop/ -v /home/docker/hadoop/hadoop1:/usr/local/hadoop/tmp  -v /home/docker/hadoop/hadoop0/logs:/usr/local/hadoop-2.7.7/logs/ -d -P centos-hadoop
@@ -330,12 +327,12 @@ docker run --name hadoop2 --hostname hadoop2 --net hadoop_default --ip 172.19.0.
 docker run -d --name mysql --hostname mysql --restart=always -p 3306:3306 -v /home/docker/mysql/log:/var/log/ -v /home/docker/mysql/my.cnf:/etc/my.cnf -v /home/docker/mysql/data:/var/lib/mysql --net hadoop_default -e MYSQL_ROOT_PASSWORD=dls123456 mysql:5.7.27 --default-authentication-plugin=mysql_native_password
 docker run --name hive --hostname hive --net hadoop_default --ip 172.19.0.6 -p9083:9083 -p 10000:10000 -p 10002:10002 -v /home/docker/hive/conf:/usr/local/hive/conf -v /home/docker/hive/tmp:/usr/local/hive/tmp -v /home/docker/hive/data:/user/hive/ -v /home/docker/hadoop/conf:/usr/local/hadoop-2.7.7/etc/hadoop/ -v /home/docker/hadoop/hadoop0:/usr/local/hadoop/tmp -v /home/docker/hadoop/hadoop0/logs:/usr/local/hadoop-2.7.7/logs/ -d -P centos-hive
 ```
-#### 创建数据库
+### 创建数据库
 ```sql
 create database metastore;
 ```
 
-#### 容器内Hadoop配置
+### 容器内Hadoop配置
 (1)设置ssh免密码登录 
 在hadoop0上执行下面操作
 ```
@@ -357,23 +354,23 @@ ssh-keygen -t rsa(一直按回车即可)
 ssh-copy-id -i localhost
 ssh-copy-id -i hadoop2
 ```
-#### 容器内Hive配置
+### 容器内Hive配置
 (1)初始化Hive mysql数据库
 ```
 schematool -dbType mysql -initSchema
 ```
-# 启动服务
-(1)启动Hadoop服务
+## 启动服务
+### 启动Hadoop服务
 ```
 cd /usr/local/hadoop-2.7.7/
 sbin/start-all.sh
 ```
-(2)启动Hive服务
+### 启动Hive服务
 ```
 hive --service metastore &
 hiveserver2
 ```
-(3)在hdfs 中创建下面的目录 ，并且授权
+### 在hdfs 中创建下面的目录 ，并且授权
 ```
 hdfs dfs -mkdir -p /user/hive/warehouse
 hdfs dfs -mkdir -p /user/hive/tmp
@@ -383,7 +380,7 @@ hdfs dfs -chmod -R 777 /user/hive/tmp
 hdfs dfs -chmod -R 777 /user/hive/log
 ```
 
-# 测试过程
+## 测试过程
 
 ### hadoop测试
 使用程序验证集群服务 
@@ -406,7 +403,7 @@ hadoop jar hadoop-mapreduce-examples-2.7.7.jar wordcount /a.txt /out
 hdfs dfs -text /out/part-r-00000
 ```
 
-# 参考
+## 参考
 [Kubernetes-在Kubernetes集群上搭建Hadoop集群](https://www.jianshu.com/p/e768ab139842)
 [Docker+Hadoop+Hive+Presto 使用Docker部署Hadoop环境和Presto](https://www.cnblogs.com/liujinhong/p/8795387.html)
 [Install and Configure MySQL for Cloudera Software](https://docs.cloudera.com/documentation/enterprise/5-16-x/topics/cli_install_mysql.html)

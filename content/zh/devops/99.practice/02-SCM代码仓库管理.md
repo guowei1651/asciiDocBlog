@@ -12,7 +12,7 @@ weight: 4000
 toc: true
 ---
 
-# 背景
+## 背景
 人在不同的阶段对于同一件事会有不同的理解。而且每个人都来说个人方向选择、精力与经历都左右着对同一件事情的理解。所以，
 > 三人行，则必有我师。是故弟子不必不如师，师不必贤于弟子，闻道有先后，术业有专攻，如是而已。 --《师说》韩愈
 
@@ -31,7 +31,7 @@ toc: true
 还有DevOps工具集的集合：
 ![](images/devops/99-02-03.webp)
 
-# 介绍
+## 介绍
 
 对于公司内部软件公司内部比较重要的几件事：业务方案，软件过程，技术方案，基础设施。
 
@@ -39,13 +39,13 @@ toc: true
 
 ![DevOps目标](images/devops/99-02-04.webp)
 
-# 技术选型
+## 技术选型
 在软件业界有各个方面可以提供代码托管服务，并且很多代码托管系统都可以与云设备进行深度的融合工作。深度融合后的代码托管服务在加上《一切即代码》理念，就可以管理代码、依赖、编译、配置、流程、设备等。下面对代码托管服务进行技术选型评比：
 
 ![SCM对比](images/devops/99-02-05.webp)
 对于可以私有化部署，并且支持更好的公司协作。费用又较低的只有Gitlab可以满足要求。GitHub，BitBucket可以私有化部署，可以支持很多功能，有完善的工具链。但Gitlab的开源协议是MIT License。并且GitLab在企业内部的使用率也很高。
 
-# 技术实践
+## 技术实践
 直接使用Docker镜像进行安装。使用[omnibus-gitlab](https://gitlab.com/gitlab-org/omnibus-gitlab/tree/master)的[docker-compose.yml](https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/docker/docker-compose.yml "docker-compose.yml")直接启动Docker即可。
 
 - #### Git协议端口修改
@@ -179,12 +179,12 @@ gitlab-ctl status
 gitlab-rake gitlab:backup:restore BACKUP=1568640014_2019_09_16_12.1.4
 ```
 
-# 总结
+## 总结
 Gitlab在公司内部使用基本上已经替代了SVN的管理。并且提供了Git的很多敏捷功能支持。不过在这个过程中需要考虑怎样提供部署级的高可用和高性能。需要有自行处理。这个时候就可以很好的设计与完善系统。
 
 每一项技术都有自己的优缺点，需要选择技术的优点。规避技术缺陷，这个时候需要有能力平衡这些有缺点。才能形成完善的技术解决方案。
 
-# 参考
+## 参考
 [大话微服务与DevOps](http://www.uml.org.cn/itil/201608101.asp)
 [【第八期金融CIO论坛】DevOps时代合伙人张乐：大型互联网公司金融项目DevOps转型实践](http://www.ciotimes.com/txhhd/127012.html?utm_source=tuicool&utm_medium=referral)
 [万达网络科技的DevOps平台架构解析](http://blog.itpub.net/31562043/viewspace-2284567/)
