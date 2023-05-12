@@ -6,7 +6,7 @@ lastmod: 2023-04-22T12:52:56+08:00
 draft: false
 images: []
 menu:
-  architecture:
+  devops:
     parent: "devops"
 weight: 4000
 toc: true

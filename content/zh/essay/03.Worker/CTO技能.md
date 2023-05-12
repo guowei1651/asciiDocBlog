@@ -6,7 +6,7 @@ lastmod: 2023-04-22T12:52:56+08:00
 draft: true
 images: []
 menu:
-  architecture:
+  essay:
     parent: "essay"
 weight: 4000
 toc: true
