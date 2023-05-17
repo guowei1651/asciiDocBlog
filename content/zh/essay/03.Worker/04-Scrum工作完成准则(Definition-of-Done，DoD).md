@@ -1,5 +1,5 @@
 ---
-title: "Scrum工作完成准则(Definition-of-Done，DoD)"
+title: "04.Scrum工作完成准则(Definition-of-Done，DoD)"
 lead: "随笔"
 date: 2023-04-22T12:52:56+08:00
 lastmod: 2023-04-22T12:52:56+08:00
