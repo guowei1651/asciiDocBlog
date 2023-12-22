@@ -14,5 +14,9 @@ toc: true
 
 六边形架构中的业务与技术的解耦与整合。
 
+CQRS中的性能。
+
+SOA服务群的概念。
+
 ## 参考
 [领域驱动设计在互联网业务开发中的实践](https://tech.meituan.com/2017/12/22/ddd-in-practice.html)
