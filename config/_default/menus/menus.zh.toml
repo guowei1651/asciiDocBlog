@@ -4,42 +4,6 @@
   url = "/architecture/directory"
   weight = 10
 
-[[microservice]]
-  name = "01. 微服务方法论"
-  weight = 2010
-  identifier = "01.methodology"
-  url = "/microservice/01.methodology/"
-
-[[microservice]]
-  name = "02. 微服务管理"
-  weight = 2020
-  identifier = "02.management"
-  url = "/microservice/02.management/"
-
-[[microservice]]
-  name = "03. 存储技术"
-  weight = 2030
-  identifier = "03.storage"
-  url = "/microservice/03.storage/"
-
-[[microservice]]
-  name = "04. 业务支持"
-  weight = 2040
-  identifier = "04.business-support"
-  url = "/microservice/04.business-support/"
-
-[[microservice]]
-  name = "05. DevOps"
-  weight = 2050
-  identifier = "05.devops"
-  url = "/microservice/05.devops/"
-
-[[microservice]]
-  name = "06. 新技术"
-  weight = 2060
-  identifier = "06.new-technology"
-  url = "/microservice/06.new-technology/"
-
 [[main]]
   name = "微服务实践"
   identifier = "microservice"

@@ -25,7 +25,14 @@
 				</nav>
 			{{ end }}
 			<h1>{{ .Title }}</h1>
-			<p class="lead">{{ .Params.lead | safeHTML }}</p>
+			<p class="lead">
+				{{ .Params.lead | safeHTML }} 
+				| <span style="font-size: 1rem">
+					{{if .Params.date}}
+						{{ .Params.date | time.Format ":date_medium" }}
+					{{end}}
+					&nbsp;共{{ .WordCount  }}字，阅读约{{ .ReadingTime  }}分钟</span>
+			</p>
 			{{ if ne .Params.toc false -}}
 			<nav class="d-xl-none" aria-label="Quaternary navigation">
 				{{ partial "sidebar/docs-toc.html" . }}
