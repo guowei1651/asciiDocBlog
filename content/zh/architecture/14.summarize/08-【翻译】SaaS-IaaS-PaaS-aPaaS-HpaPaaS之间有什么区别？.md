@@ -5,6 +5,8 @@ date: 2020-12-11T08:21:56+08:00
 lastmod: 2023-04-22T12:52:56+08:00
 draft: false
 images: []
+weight: 0800
+toc: true
 ---
 
 原文是[What’s the difference between SaaS / IaaS / PaaS / aPaaS / HpaPaaS?](https://blog.kintone.com/business-with-heart/difference-saas-iaas-paas-apaas-hpapaas)

@@ -8,7 +8,7 @@ images: ["images/architecture/02-02-01-01.webp"]
 menu:
   architecture:
     parent: "02.analysis-and-design"
-weight: 1003
+weight: 0202
 toc: true
 ---
 

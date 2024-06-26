@@ -8,6 +8,6 @@ images: []
 menu:
   architecture:
     parent: "01.design-method"
-weight: 1002
+weight: 0400
 toc: true
 ---

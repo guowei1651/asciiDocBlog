@@ -8,6 +8,6 @@ images: []
 menu:
   architecture:
     parent: "04.architecture-evaluation"
-weight: 1003
+weight: 0400
 toc: true
 ---

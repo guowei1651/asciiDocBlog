@@ -8,6 +8,6 @@ images: []
 menu:
   architecture:
     parent: "02.analysis-and-design"
-weight: 1003
+weight: 0400
 toc: true
 ---

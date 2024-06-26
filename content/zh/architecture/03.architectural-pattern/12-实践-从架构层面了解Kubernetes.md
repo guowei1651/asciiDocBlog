@@ -8,7 +8,7 @@ images: ["images/architecture/03-12-01.webp"]
 menu:
   architecture:
     parent: "03.architectural-pattern"
-weight: 1003
+weight: 1200
 toc: true
 ---
 
