@@ -1,7 +1,7 @@
 ---
 title: "Jenkins的环境管理讨论"
 lead: "02 未划分"
-date: 2023-04-22T12:52:56+08:00
+date: 2019-07-26T16:26:56+08:00
 lastmod: 2023-04-22T12:52:56+08:00
 draft: false
 images: []

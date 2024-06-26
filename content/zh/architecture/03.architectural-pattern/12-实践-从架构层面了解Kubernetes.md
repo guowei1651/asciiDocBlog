@@ -1,7 +1,7 @@
 ---
 title: "12 实践 从架构层面了解Kubernetes"
 lead: "架构设计30 架构模式"
-date: 2023-04-22T12:52:56+08:00
+date: 2022-08-29T17:38:56+08:00
 lastmod: 2023-04-22T12:52:56+08:00
 draft: false
 images: ["images/architecture/03-12-01.webp"]

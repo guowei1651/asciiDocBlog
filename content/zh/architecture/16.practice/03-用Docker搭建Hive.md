@@ -1,7 +1,7 @@
 ---
 title: "03 用Docker搭建Hive"
 lead: "16.实践"
-date: 2023-04-22T12:52:56+08:00
+date: 2019-10-28T03:08:56+08:00
 lastmod: 2023-04-22T12:52:56+08:00
 draft: false
 images: []

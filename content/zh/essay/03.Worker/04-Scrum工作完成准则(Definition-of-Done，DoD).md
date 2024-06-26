@@ -1,7 +1,7 @@
 ---
 title: "04.Scrum工作完成准则(Definition-of-Done，DoD)"
 lead: "随笔"
-date: 2023-04-22T12:52:56+08:00
+date: 2018-10-08T15:07+08:00
 lastmod: 2023-04-22T12:52:56+08:00
 draft: false
 images: []

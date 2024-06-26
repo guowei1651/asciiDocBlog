@@ -1,7 +1,7 @@
 ---
 title: "关于Solaris中类似于的Inotify功能"
 lead: "随笔"
-date: 2023-04-22T12:52:56+08:00
+date: 2019-07-05T18:51:56+08:00
 lastmod: 2023-04-22T12:52:56+08:00
 draft: false
 images: []
