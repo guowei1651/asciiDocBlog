@@ -110,3 +110,12 @@ rel  = "sitemap"
   [[module.mounts]]
     source = "node_modules/@hyas/images/layouts"
     target = "layouts"
+
+# Add-ons
+[add_ons]
+  docSearch = true # false (default) or true
+
+# Doks (@thulite/doks-core)
+[doks]
+  # FlexSearch
+  flexSearch = false # true (default) or false
